@@ -5,13 +5,13 @@ export default {
         background: '#F5F5F5',
         error: '#B00200',
         text: '#000000',
+        shape: '#FFFFFF',
     },
     fonts: {
-        bold: 'Roboto-Bold',
-        medium: 'Roboto_Medium',
-        regular: 'Roboto_Regular',
-        light: 'Roboto-Light',
-        thin: 'Roboto-Thin',
+        medium: 'Poppins_500Medium',
+        regular: 'Poppins_400Regular',
+        bold: 'Poppins_700Bold',
+        black: 'Poppins_900Black',
     },
     spacing: {
         small: 8,
