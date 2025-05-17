@@ -6,10 +6,11 @@ import{
     RFValue,
 } from 'react-native-responsive-fontsize'
 import theme from "../../global/styles/theme";
+import { Feather } from '@expo/vector-icons'
 
 export const Container = styled.View`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.primary}
+    background-color: ${({ theme }) => theme.colors.background}
 `
 export const Title = styled.Text`
     font-family: ${({ theme}) => theme.fonts.bold};
@@ -55,4 +56,16 @@ export const UserName  = styled.Text`
     color: ${ ({theme}) => theme.colors.shape};
     font-size: ${ RFValue(18)}px;
     font-family: ${ ({theme}) => theme.fonts.bold};  
+`
+
+export const Icon = styled(Feather)`
+    color: ${({theme}) => theme.colors.secundary};
+    font-size: ${RFValue(24)}px;
+`
+export const HighlightCards = styled.ScrollView.attrs({
+    horizontal: true,
+    showsHorizontalScrollIndicator: false,
+    contentContainerStyle:  {paddingHorizontal: 24},
+})`
+
 `

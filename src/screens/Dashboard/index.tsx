@@ -8,7 +8,10 @@ import {
     UserGreeting,
     UserName,
     UserWrapper,
+    Icon,
+    HighlightCards,
 } from "./styles";
+import { HighlightCard } from '../../components/HighlightCard';
 
 export function Dashboard(){
     return(
@@ -22,10 +25,18 @@ export function Dashboard(){
                         <UserName>Aluno</UserName>
                     </User>
                 </UserInfo>
-                <Feather name="power"/>
+                <Icon name="power"/>
                 
             </UserWrapper>
            </Header>
+           <HighlightCards
+               
+           >
+                <HighlightCard/>
+                <HighlightCard/>
+                <HighlightCard/>
+           </HighlightCards>
+
         </Container>
     );
 }
