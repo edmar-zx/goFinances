@@ -10,8 +10,14 @@ import {
     UserWrapper,
     Icon,
     HighlightCards,
+    Transactions,
+    Text
 } from "./styles";
 import { HighlightCard } from '../../components/HighlightCard';
+import { Transaction } from '../../components/Transaction';
+
+
+
 
 export function Dashboard(){
     return(
@@ -29,13 +35,31 @@ export function Dashboard(){
                 
             </UserWrapper>
            </Header>
-           <HighlightCards
-               
-           >
-                <HighlightCard/>
-                <HighlightCard/>
-                <HighlightCard/>
+           <HighlightCards>
+                <HighlightCard
+                    type='up'
+                    title='Edntradas'
+                    amount='R$ 17.000,00'
+                    lastTransaction='Última entrada em 16 de Junho'
+                />
+                <HighlightCard
+                    type='down'
+                    title='Saídas'
+                    amount='R$ 12.000,00'
+                    lastTransaction='Última saída em 16 de Junho'
+                />
+                <HighlightCard
+                    type='total'
+                    title='Total'
+                    amount='R$ 7.000,00'
+                    lastTransaction='De 1 a 16 de Junho'
+                />
            </HighlightCards>
+
+           <Transactions>
+                <Text>Listagem</Text>
+                <Transaction/>
+           </Transactions>
 
         </Container>
     );
