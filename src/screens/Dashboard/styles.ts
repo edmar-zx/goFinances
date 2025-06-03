@@ -80,12 +80,14 @@ export const Transactions = styled.View`
     flex: 1;
     padding-top: ${RFPercentage(5)}px;
     background-color: ${ ({theme}) => theme.colors.background };
+    align-items: center;
+    
 
-
-   
-
-   
 `
 export const Text = styled.Text`
     font-size: ${ RFValue(18)}px;
+    text-align: left;
+    padding: 0 24px;
+    width: 100%;
+    margin: ${ RFValue(18)}px;
 `

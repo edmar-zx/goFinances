@@ -5,15 +5,15 @@ import {
     Icon,
     Footer,
     Amount,
-    LastTransaction,
+    DataTransaction,
 } from "./styles"
-
+import React from 'react';
 
 interface Props {
     type: 'up' | 'down' | 'total'
     title: string
     amount: string
-    lastTransaction: string
+    dataTransaction: string
 }
 
 const icon = {
@@ -22,27 +22,28 @@ const icon = {
     total: 'dollar-sign',
 }
 
-export function Transaction({type, title, amount, lastTransaction}: Props){
+export function Transaction({type, title, amount, dataTransaction}: Props){
     return(
         <Container type={ type }>
             <Header>
                 <Title type={type}>
                     {title}
                 </Title>
+               <Amount type={type}>
+                    { amount }
+                </Amount>
+            </Header>
+
+            <Footer>
                 <Icon 
                     name={ icon[type] }
                     type={ type }
                 />
-            </Header>
+                
+                <DataTransaction type={type}>
+                    { dataTransaction }
 
-            <Footer>
-                <Amount type={type}>
-                    { amount }
-                </Amount>
-                <LastTransaction type={type}>
-                    { lastTransaction }
-
-                </LastTransaction>
+                </DataTransaction>
             </Footer>
         </Container>
     )

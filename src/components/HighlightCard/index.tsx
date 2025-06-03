@@ -7,7 +7,7 @@ import {
     Amount,
     LastTransaction,
 } from "./styles"
-
+import React from 'react';
 
 interface Props {
     type: 'up' | 'down' | 'total'

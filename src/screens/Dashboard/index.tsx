@@ -1,4 +1,5 @@
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
 import {
     Container,
     Header,
@@ -38,7 +39,7 @@ export function Dashboard(){
            <HighlightCards>
                 <HighlightCard
                     type='up'
-                    title='Edntradas'
+                    title='Entradas'
                     amount='R$ 17.000,00'
                     lastTransaction='Última entrada em 16 de Junho'
                 />
@@ -58,7 +59,12 @@ export function Dashboard(){
 
            <Transactions>
                 <Text>Listagem</Text>
-                <Transaction/>
+                <Transaction
+                    type='total'
+                    title='Desenvolvimento de site'
+                    amount='R$ 12.000,00'
+                    dataTransaction='13/04/2020'
+                />
            </Transactions>
 
         </Container>

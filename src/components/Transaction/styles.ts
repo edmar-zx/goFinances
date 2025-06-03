@@ -10,18 +10,19 @@ interface TypeProps {
 export const Container = styled.View<TypeProps>`
     background-color: ${ ({theme, type}) => 
         type === 'total' ? theme.colors.secondary : theme.colors.shape
-    };
-    width: ${RFValue(300)}px;
+    }; /* mexer na cor do bg dps */
+    width: ${RFValue(320)}px;
+    height: ${RFValue(140)}px;
     border-radius: ${({theme}) => theme.borderRadius.large}px;
     padding: 20px 23px;
     padding-bottom: ${RFValue(42)}px;
     margin-right: ${({theme}) => theme.spacing.small};
+    
 `
 export const Header = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 `
 export const Title = styled.Text<TypeProps>`
     font-size: ${({theme}) => theme.fontSize.small}px;
@@ -52,7 +53,12 @@ export const Icon = styled(Feather)<TypeProps>`
     }
 
 `
-export const Footer = styled.View``
+export const Footer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+`
 
 export const Amount = styled.Text<TypeProps>`
     font-size: ${({theme}) => theme.fontSize.xxlarge};
@@ -61,7 +67,7 @@ export const Amount = styled.Text<TypeProps>`
     color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.text};
 
 `
-export const LastTransaction = styled.Text<TypeProps>`
+export const DataTransaction = styled.Text<TypeProps>`
     font-size: ${({theme}) => theme.fontSize.small};
     font-family: ${({theme}) => theme.fonts.regular};
     color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.text};
