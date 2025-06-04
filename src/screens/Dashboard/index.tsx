@@ -20,23 +20,23 @@ import { Transaction } from '../../components/Transaction';
 
 
 
-export function Dashboard(){
-    return(
+export function Dashboard() {
+    return (
         <Container>
-           <Header>
-            <UserWrapper>
-                <UserInfo>
-                    <Photo source ={ {uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBANCPL-jtI4TIy52JaivBpQadyJQm1tyiBA&s'}}/>
-                    <User>
-                        <UserGreeting>Olá</UserGreeting>
-                        <UserName>Aluno</UserName>
-                    </User>
-                </UserInfo>
-                <Icon name="power"/>
-                
-            </UserWrapper>
-           </Header>
-           <HighlightCards>
+            <Header>
+                <UserWrapper>
+                    <UserInfo>
+                        <Photo source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBANCPL-jtI4TIy52JaivBpQadyJQm1tyiBA&s' }} />
+                        <User>
+                            <UserGreeting>Olá</UserGreeting>
+                            <UserName>Aluno</UserName>
+                        </User>
+                    </UserInfo>
+                    <Icon name="power" />
+
+                </UserWrapper>
+            </Header>
+            <HighlightCards>
                 <HighlightCard
                     type='up'
                     title='Entradas'
@@ -46,7 +46,7 @@ export function Dashboard(){
                 <HighlightCard
                     type='down'
                     title='Saídas'
-                    amount='R$ 12.000,00'
+                    amount='- R$ 12.000,00'
                     lastTransaction='Última saída em 16 de Junho'
                 />
                 <HighlightCard
@@ -55,18 +55,51 @@ export function Dashboard(){
                     amount='R$ 7.000,00'
                     lastTransaction='De 1 a 16 de Junho'
                 />
-           </HighlightCards>
+            </HighlightCards>
 
-           <Transactions>
+            <Transactions>
                 <Text>Listagem</Text>
                 <Transaction
-                    type='total'
+                    type='up'
+                    icon='dollar-sign'
                     title='Desenvolvimento de site'
                     amount='R$ 12.000,00'
                     dataTransaction='13/04/2020'
+                    typeExpense='Vendas'
                 />
-           </Transactions>
-
+                <Transaction
+                    type='down'
+                    icon='coffee'
+                    title='Hamburgueria Pizzy'
+                    amount='- R$ 59,00'
+                    dataTransaction='10/04/2020'
+                    typeExpense='Alimentação'
+                />
+                <Transaction
+                    type='down'
+                    icon='home'
+                    title='Aluguel do apartamento'
+                    amount='- R$ 2.000,00'
+                    dataTransaction='20/04/2020'
+                    typeExpense='Aluguel'
+                />
+                <Transaction
+                    type='up'
+                    icon='activity'
+                    title='Mercado Financeiro'
+                    amount='R$ 3.423,00'
+                    dataTransaction='26/04/2020'
+                    typeExpense='Ações'
+                />
+                <Transaction
+                    type='down'
+                    icon='droplet'
+                    title='Conta de Água'
+                    amount='- R$ 380,00'
+                    dataTransaction='22/04/2020'
+                    typeExpense='Água'
+                />
+            </Transactions>
         </Container>
     );
 }

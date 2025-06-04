@@ -39,7 +39,6 @@ export const Icon = styled(Feather)<TypeProps>`
             color: ${({ theme }) => theme.colors.success}
         ` 
     }
-
     ${
         ({ type }) => type === 'down' && css`
             color: ${({ theme }) => theme.colors.attention}

@@ -10,13 +10,12 @@ import { Feather } from '@expo/vector-icons'
 
 export const Container = styled.View`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.background}
+    background-color: ${({ theme }) => theme.colors.shape};
 `
 export const Title = styled.Text`
     font-family: ${({ theme}) => theme.fonts.bold};
     font-size: 24px;
     color: ${({ theme }) => theme.colors.text};
-    
 `
 
 export const Header = styled.View`
@@ -25,7 +24,6 @@ export const Header = styled.View`
     background-color: ${ ({theme}) => theme.colors.primary };
     justify-content: flex-start;
     align-items: center;
-
 `
 export const UserWrapper = styled.View`
     width: 100%;
@@ -75,19 +73,21 @@ export const HighlightCards = styled.ScrollView.attrs
     z-index: 9;
 `
 
-export const Transactions = styled.View`
-    z-index: 1;
+export const Transactions = styled.ScrollView.attrs({
+    showsVerticalScrollIndicator: false,
+    contentContainerStyle: { paddingHorizontal: 24, paddingBottom: 24 }
+})`
     flex: 1;
     padding-top: ${RFPercentage(5)}px;
-    background-color: ${ ({theme}) => theme.colors.background };
-    align-items: center;
+    background-color: ${({theme}) => theme.colors.background};
     
-
 `
+
 export const Text = styled.Text`
-    font-size: ${ RFValue(18)}px;
+    font-size: ${RFValue(18)}px;
     text-align: left;
     padding: 0 24px;
     width: 100%;
-    margin: ${ RFValue(18)}px;
+    margin-top: ${RFValue(18)}px;
+    margin-bottom: ${ RFValue(10)}px;
 `

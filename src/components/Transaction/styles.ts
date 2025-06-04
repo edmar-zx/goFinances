@@ -4,19 +4,20 @@ import { RFValue } from "react-native-responsive-fontsize"
 
 
 interface TypeProps {
-    type: 'up' | 'down' | 'total'
+    type: 'up' | 'down' 
 }
 
 export const Container = styled.View<TypeProps>`
-    background-color: ${ ({theme, type}) => 
-        type === 'total' ? theme.colors.secondary : theme.colors.shape
-    }; /* mexer na cor do bg dps */
+
+    background-color: ${({ theme }) => theme.colors.shape};
     width: ${RFValue(320)}px;
-    height: ${RFValue(140)}px;
+    height: ${RFValue(150)}px;
     border-radius: ${({theme}) => theme.borderRadius.large}px;
     padding: 20px 23px;
     padding-bottom: ${RFValue(42)}px;
     margin-right: ${({theme}) => theme.spacing.small};
+    margin-bottom: ${RFValue(15)}px;
+   
     
 `
 export const Header = styled.View`
@@ -25,50 +26,53 @@ export const Header = styled.View`
     justify-content: flex-start;
 `
 export const Title = styled.Text<TypeProps>`
-    font-size: ${({theme}) => theme.fontSize.small}px;
-    font-family: ${({theme}) => theme.fonts.regular};
-    color: ${({theme, type}) => 
-        type === 'total' ? theme.colors.shape : theme.colors.text
-    };
-`
-export const Icon = styled(Feather)<TypeProps>`
-    font-size: ${({theme}) => theme.fontSize.xlarge}px;
-    font-family: ${({theme}) => theme.fonts.regular};
-    color: ${({theme}) => theme.colors.success};
-    ${
-        ({ type }) => type === 'up' && css`
-            color: ${({ theme }) => theme.colors.success}
-        ` 
-    }
+    font-size: ${({ theme }) => theme.fontSize.medium}px;
+    font-family: ${({ theme }) => theme.fonts.regular};
+    color: ${({ theme }) => theme.colors.text};
 
-    ${
-        ({ type }) => type === 'down' && css`
-            color: ${({ theme }) => theme.colors.attention}
-         ` 
-    }
-    ${
-        ({ type }) => type === 'total' && css`
-            color: ${({ theme }) => theme.colors.shape}
-         ` 
-    }
+`
+export const Amount = styled.Text<TypeProps>`
+    font-size: ${({ theme }) => theme.fontSize.large};
+    font-family: ${({ theme }) => theme.fonts.medium};
+    margin-top: ${({ theme }) => theme.spacing.small};
+    color: ${({ theme, type }) => 
+        type === 'down'
+        ? theme.colors.attention
+        : theme.colors.success
+    };
 
 `
 export const Footer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: ${({ theme }) => theme.spacing.medium}
 
 `
-
-export const Amount = styled.Text<TypeProps>`
-    font-size: ${({theme}) => theme.fontSize.xxlarge};
-    font-family: ${({theme}) => theme.fonts.medium};
-    margin-top: ${({theme}) => theme.spacing.xlarge};
-    color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.text};
-
+export const LeftGroup = styled.View`
+    flex-direction: row;
+    align-items: center;
+    gap: ${RFValue(10)}px;
 `
-export const DataTransaction = styled.Text<TypeProps>`
-    font-size: ${({theme}) => theme.fontSize.small};
+
+export const Icon = styled(Feather)<TypeProps>`
+    font-size: ${({theme}) => theme.fontSize.xlarge}px;
     font-family: ${({theme}) => theme.fonts.regular};
-    color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.text};
+    color: ${({theme}) => theme.colors.text_light};
+
 `
+export const TypeExpense = styled.Text<TypeProps>`
+    font-size: ${({theme}) => theme.fontSize.medium}px;
+    font-family: ${({theme}) => theme.fonts.regular};
+    color: ${({theme}) => theme.colors.text_light};
+`
+
+export const DataTransaction = styled.Text<TypeProps>`
+    font-size: ${({ theme }) => theme.fontSize.medium};
+    font-family: ${({ theme }) => theme.fonts.regular};
+    color: ${({ theme }) => theme.colors.text_light};
+  
+`
+
+
+
