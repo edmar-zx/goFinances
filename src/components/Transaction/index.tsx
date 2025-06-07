@@ -11,8 +11,9 @@ import {
 } from "./styles"
 import React from 'react';
 
-interface Props {
-    type: 'up' | 'down' | 'total'
+
+interface TransactionProps {
+    type: 'up' | 'down'
     title: string
     amount: string
     typeExpense: string
@@ -20,39 +21,36 @@ interface Props {
     icon?: string
 }
 
-/* const icon = {
-     up: 'arrow-up-circle',
-    down: 'arrow-down-circle',
-    total: 'dollar-sign',
-    sales: 'dollar-sign',
-} */
+interface Props {
+  data: TransactionProps ;
+}
 
-
-export function Transaction({ type, title, amount, typeExpense, dataTransaction, icon: iconName }: Props) {
+export function Transaction({ data }: Props) {
     return (
-        <Container type={type}>
+        <Container type={data.type}>
             <Header>
-                <Title type={type}>
-                    {title}
+                <Title type={data.type}>
+                    {data.title}
                 </Title>
-                <Amount type={type}>
-                    {amount}
+                <Amount type={data.type}>
+                    {data.type === 'down' && '- '}
+                    {data.amount}
                 </Amount>
             </Header>
 
             <Footer>
                 <LeftGroup>
                     <Icon
-                        name={iconName ?? (type === 'up' ? 'arrow-up-circle' : 'arrow-down-circle')}
-                        type={type}
+                        name={data.icon ?? (data.type === 'up' ? 'arrow-up-circle' : 'arrow-down-circle')}
+                        type={data.type}
                     />
-                    <TypeExpense type={type}>
-                        {typeExpense}
+                    <TypeExpense type={data.type}>
+                        {data.typeExpense}
                     </TypeExpense>
                 </LeftGroup>
 
-                <DataTransaction type={type}>
-                    {dataTransaction}
+                <DataTransaction type={data.type}>
+                    {data.dataTransaction}
 
                 </DataTransaction>
             </Footer>

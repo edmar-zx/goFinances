@@ -3,11 +3,11 @@ import { Feather } from '@expo/vector-icons'
 import { RFValue } from "react-native-responsive-fontsize"
 
 
-interface TypeProps {
+interface TransactionProps  {
     type: 'up' | 'down' 
 }
 
-export const Container = styled.View<TypeProps>`
+export const Container = styled.View<TransactionProps>`
 
     background-color: ${({ theme }) => theme.colors.shape};
     width: ${RFValue(320)}px;
@@ -15,7 +15,6 @@ export const Container = styled.View<TypeProps>`
     border-radius: ${({theme}) => theme.borderRadius.large}px;
     padding: 20px 23px;
     padding-bottom: ${RFValue(42)}px;
-    margin-right: ${({theme}) => theme.spacing.small};
     margin-bottom: ${RFValue(15)}px;
    
     
@@ -25,13 +24,13 @@ export const Header = styled.View`
     align-items: flex-start;
     justify-content: flex-start;
 `
-export const Title = styled.Text<TypeProps>`
+export const Title = styled.Text<TransactionProps>`
     font-size: ${({ theme }) => theme.fontSize.medium}px;
     font-family: ${({ theme }) => theme.fonts.regular};
     color: ${({ theme }) => theme.colors.text};
 
 `
-export const Amount = styled.Text<TypeProps>`
+export const Amount = styled.Text<TransactionProps>`
     font-size: ${({ theme }) => theme.fontSize.large};
     font-family: ${({ theme }) => theme.fonts.medium};
     margin-top: ${({ theme }) => theme.spacing.small};
@@ -55,19 +54,19 @@ export const LeftGroup = styled.View`
     gap: ${RFValue(10)}px;
 `
 
-export const Icon = styled(Feather)<TypeProps>`
+export const Icon = styled(Feather)<TransactionProps >`
     font-size: ${({theme}) => theme.fontSize.xlarge}px;
     font-family: ${({theme}) => theme.fonts.regular};
     color: ${({theme}) => theme.colors.text_light};
 
 `
-export const TypeExpense = styled.Text<TypeProps>`
+export const TypeExpense = styled.Text<TransactionProps >`
     font-size: ${({theme}) => theme.fontSize.medium}px;
     font-family: ${({theme}) => theme.fonts.regular};
     color: ${({theme}) => theme.colors.text_light};
 `
 
-export const DataTransaction = styled.Text<TypeProps>`
+export const DataTransaction = styled.Text<TransactionProps >`
     font-size: ${({ theme }) => theme.fontSize.medium};
     font-family: ${({ theme }) => theme.fonts.regular};
     color: ${({ theme }) => theme.colors.text_light};

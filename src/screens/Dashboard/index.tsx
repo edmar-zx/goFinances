@@ -12,15 +12,57 @@ import {
     Icon,
     HighlightCards,
     Transactions,
-    Text
+    Text,
+    TransactionList
 } from "./styles";
 import { HighlightCard } from '../../components/HighlightCard';
 import { Transaction } from '../../components/Transaction';
 
-
-
-
 export function Dashboard() {
+    const data = [
+        {
+            type:'up',
+            icon:'dollar-sign',
+            title:'Desenvolvimento de site',
+            amount:'R$ 12.000,00',
+            dataTransaction:'13/04/2020',
+            typeExpense:'Vendas',
+        },
+        {
+            type:'down',
+            icon:'coffee',
+            title:'Hamburgueria Pizzy',
+            amount:'R$ 59,00',
+            dataTransaction:'10/04/2020',
+            typeExpense:'Alimentação',
+        
+        },
+        {
+            type:'down',
+            icon:'home',
+            title:'Aluguel do apartamento',
+            amount:'R$ 2.000,00',
+            dataTransaction:'20/04/2020',
+            typeExpense:'Aluguel',
+        },
+        {
+            type:'up',
+            icon:'activity',
+            title:'Mercado Financeiro',
+            amount:'R$ 3.423,00',
+            dataTransaction:'26/04/2020',
+            typeExpense:'Ações',
+        },
+        {
+            type:'down',
+            icon:'droplet',
+            title:'Conta de Água',
+            amount:'R$ 380,00',
+            dataTransaction:'22/04/2020',
+            typeExpense:'Água',
+        },
+        
+    ]
     return (
         <Container>
             <Header>
@@ -59,45 +101,10 @@ export function Dashboard() {
 
             <Transactions>
                 <Text>Listagem</Text>
-                <Transaction
-                    type='up'
-                    icon='dollar-sign'
-                    title='Desenvolvimento de site'
-                    amount='R$ 12.000,00'
-                    dataTransaction='13/04/2020'
-                    typeExpense='Vendas'
-                />
-                <Transaction
-                    type='down'
-                    icon='coffee'
-                    title='Hamburgueria Pizzy'
-                    amount='- R$ 59,00'
-                    dataTransaction='10/04/2020'
-                    typeExpense='Alimentação'
-                />
-                <Transaction
-                    type='down'
-                    icon='home'
-                    title='Aluguel do apartamento'
-                    amount='- R$ 2.000,00'
-                    dataTransaction='20/04/2020'
-                    typeExpense='Aluguel'
-                />
-                <Transaction
-                    type='up'
-                    icon='activity'
-                    title='Mercado Financeiro'
-                    amount='R$ 3.423,00'
-                    dataTransaction='26/04/2020'
-                    typeExpense='Ações'
-                />
-                <Transaction
-                    type='down'
-                    icon='droplet'
-                    title='Conta de Água'
-                    amount='- R$ 380,00'
-                    dataTransaction='22/04/2020'
-                    typeExpense='Água'
+
+                <TransactionList
+                    data={data}
+                    renderItem={({ item }) => <Transaction data={item} /> }
                 />
             </Transactions>
         </Container>
