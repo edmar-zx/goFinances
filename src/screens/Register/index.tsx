@@ -1,4 +1,6 @@
-import { Container, Header, Text } from "./styles";
+import React from "react";
+import { Container, Form, Header, Title } from "./styles";
+
 
 
 export function Register() {
@@ -6,8 +8,13 @@ export function Register() {
     return (
         <Container>
             <Header>
-                <Text>Cadastro</Text>
+                <Title>Cadastro</Title>
             </Header>
+
+            <Form>
+               
+            </Form>
+
         </Container>
     );
 }

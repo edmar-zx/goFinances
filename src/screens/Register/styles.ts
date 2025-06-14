@@ -12,12 +12,26 @@ export const Container = styled.View`
 `
 
 export const Header = styled.View`
-    width: 100%;
-    height: ${ RFPercentage(20) };
     background-color: ${ ({theme}) => theme.colors.primary };
+    width: 100%;
+    height: ${ RFValue(100)}px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+    font-family: ${({ theme }) => theme.fonts.bold};
+   
 `
 
-export const Text = styled.Text`
+export const Title = styled.Text`
+    font-family: ${({ theme }) => theme.fonts.regular};
+    color: ${({ theme }) => theme.colors.shape};
     font-size: ${RFValue(18)}px;
-    color: ${({theme}) => theme.colors.shape};
+    margin-top: 50px;
 `
+
+export const Form = styled.View`
+    flex: 1;
+    width: 100%;
+    padding: 24px;
+`
+
