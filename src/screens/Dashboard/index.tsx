@@ -107,6 +107,7 @@ export function Dashboard() {
                     renderItem={({ item }) => <Transaction data={item} /> }
                 />
             </Transactions>
+            
         </Container>
     );
 }
