@@ -1,5 +1,5 @@
 export default {
-    colors: { // Mudar cores depois para as que estao no figma
+    colors: {
         primary: '#5F2EEA',
         secondary: '#FF872C',
 
