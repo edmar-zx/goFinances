@@ -68,7 +68,7 @@ export function Dashboard() {
             <Header>
                 <UserWrapper>
                     <UserInfo>
-                        <Photo source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBANCPL-jtI4TIy52JaivBpQadyJQm1tyiBA&s' }} />
+                        <Photo source={{ uri: 'https://github.com/edmar-zx/goFinancesWeb/blob/master/assets/images/fotodeperfil.PNG?raw=true' }} />
                         <User>
                             <UserGreeting>Olá</UserGreeting>
                             <UserName>Aluno</UserName>

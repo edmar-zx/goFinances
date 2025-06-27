@@ -8,13 +8,13 @@ import theme from "../../global/styles/theme";
 
 export const Container = styled.View`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.shape};
+    background-color: ${({ theme }) => theme.colors.background};
 `
 
 export const Header = styled.View`
     background-color: ${ ({theme}) => theme.colors.primary };
     width: 100%;
-    height: ${ RFValue(100)}px;
+    height: ${ RFValue(150)}px;
     align-items: center;
     justify-content: center;
     padding-bottom: 20px;
@@ -26,12 +26,26 @@ export const Title = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     color: ${({ theme }) => theme.colors.shape};
     font-size: ${RFValue(18)}px;
-    margin-top: 50px;
+    margin-top: 80px;
 `
 
 export const Form = styled.View`
-    flex: 1;
+    margin-bottom: 60px;
     width: 100%;
     padding: 24px;
 `
+
+export const Buttons = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+`
+export const ButtonWrapper = styled.View`
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+`;
+
 

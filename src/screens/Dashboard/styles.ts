@@ -8,6 +8,7 @@ import{
 import theme from "../../global/styles/theme";
 import { Feather } from '@expo/vector-icons'
 
+
 export const Container = styled.View`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.shape};

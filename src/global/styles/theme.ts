@@ -8,6 +8,7 @@ export default {
 
         attention: '#E83F5B',
         attentionLight: '#FFCDD2',
+        warning: '#F8BD00',
 
         background: '#F0F0F0',
         error: '#B00200',
