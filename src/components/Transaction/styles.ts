@@ -61,13 +61,13 @@ export const Icon = styled(Feather)<TransactionProps >`
 
 `
 export const TypeExpense = styled.Text<TransactionProps >`
-    font-size: ${({theme}) => theme.fontSize.medium}px;
+    font-size: ${({theme}) => theme.fontSize.small}px;
     font-family: ${({theme}) => theme.fonts.regular};
     color: ${({theme}) => theme.colors.text_light};
 `
 
 export const DataTransaction = styled.Text<TransactionProps >`
-    font-size: ${({ theme }) => theme.fontSize.medium};
+    font-size: ${({ theme }) => theme.fontSize.small};
     font-family: ${({ theme }) => theme.fonts.regular};
     color: ${({ theme }) => theme.colors.text_light};
   

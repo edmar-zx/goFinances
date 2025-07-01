@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AppTabRoutesParamList } from "../@types/navigation";
 
 import { Dashboard } from "../screens/Dashboard";
 import { Register } from "../screens/Register";
@@ -8,7 +9,8 @@ import { Resume } from "../screens/Resume";
 import { Feather } from '@expo/vector-icons';
 import theme from "../global/styles/theme";
 
-const { Navigator, Screen } = createBottomTabNavigator();
+
+const { Navigator, Screen } = createBottomTabNavigator<AppTabRoutesParamList>();
 
 export function AppRoutes() {
     return (
