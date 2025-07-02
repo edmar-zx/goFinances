@@ -40,8 +40,28 @@ export function Register() {
     type NavigationProps = BottomTabNavigationProp<AppTabRoutesParamList>;
     const navigation = useNavigation<NavigationProps>();
 
-    const categories = ['Supermercado', 'Energia', 'Água', 'Transporte', 'Aluguel', 'Internet', 'Telefone', 'Saúde', 'Farmácia', 'Educação', 'Assinaturas', 'Lazer', 'Restaurante', 'Roupas', 'Manutenção', 'Impostos', 'Doações', 'Pet', 'Viagem', 'Cursos', 'Compras Online', 'Serviços Domésticos', 'Cuidados Pessoais', 'Emergências', 'Reserva de Emergência', 'Poupança', 'Cartão de Crédito', 'Salário', 'Freelance', 'Rendimentos', 'Investimentos', 'Presentes', 'Reembolsos', 'Outros'];
-
+    const categories = [
+        'Água',
+        'Alimentação',
+        'Aluguel',
+        'Assinaturas',
+        'Cartão de Crédito',
+        'Compras',
+        'Educação',
+        'Energia',
+        'Internet',
+        'Investimentos',
+        'Lazer',
+        'Receitas',
+        'Restaurante',
+        'Salário',
+        'Saúde',
+        'Serviços',
+        'Supermercado',
+        'Telefone',
+        'Transporte',
+        'Outros'
+    ];
     function handleSelectType(type: 'up' | 'down') {
         setTransactionType(type);
     }
@@ -94,20 +114,15 @@ export function Register() {
             return;
         }
 
-        const dataBrasilia = new Date();
-        dataBrasilia.setHours(dataBrasilia.getHours() - 3); // Brasília = UTC−3
-
         const transaction = {
             titulo: title,
             valor: numericPrice,
             tipo: transactionType === 'up' ? 'entrada' : 'saida',
-            categoria: selectedCategory,
-            data: dataBrasilia.toISOString(), // salva como ISO em UTC−3 ajustado
+            categoria: selectedCategory
         };
 
         try {
             await postTransaction(transaction);
-
 
             Alert.alert(
                 'Transação salva com sucesso!',

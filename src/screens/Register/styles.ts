@@ -14,7 +14,7 @@ export const Container = styled.View`
 export const Header = styled.View`
     background-color: ${ ({theme}) => theme.colors.primary };
     width: 100%;
-    height: ${ RFValue(150)}px;
+    height: ${ RFValue(120)}px;
     align-items: center;
     justify-content: center;
     padding-bottom: 20px;
@@ -26,7 +26,7 @@ export const Title = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     color: ${({ theme }) => theme.colors.shape};
     font-size: ${RFValue(18)}px;
-    margin-top: 80px;
+    margin-top: ${RFValue(70)}px;;
 `
 
 export const Form = styled.View`

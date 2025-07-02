@@ -1,5 +1,6 @@
 import { Feather } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
     Container,
     Header,
@@ -19,8 +20,6 @@ import { HighlightCard } from '../../components/HighlightCard';
 import { Transaction } from '../../components/Transaction';
 import { getTransactions, getMonthlySummary } from '../../api/api';
 
-
-
 interface MonthlySummary {
     entry: number;
     exit: number;
@@ -29,9 +28,8 @@ interface MonthlySummary {
     lastExit: string;
 }
 
-
 export function Dashboard() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any[]>([]);
     const [highlightData, setHighlightData] = useState<MonthlySummary>({
         entry: 0,
         exit: 0,
@@ -40,127 +38,115 @@ export function Dashboard() {
         lastExit: ''
     });
 
+    // Pega o ícone pelo nome da categoria
     const getIconByCategoria = (categoria: string) => {
         const icons: { [key: string]: string } = {
-            'Supermercado': 'shopping-cart',
-            'Energia': 'zap',
-            'Água': 'droplet',
-            'Transporte': 'truck',
+            'Alimentação': 'utensils', // ícone novo sugerido
             'Aluguel': 'home',
-            'Internet': 'wifi',
-            'Telefone': 'phone',
-            'Saúde': 'heart',
-            'Farmácia': 'plus-square',
-            'Educação': 'book',
             'Assinaturas': 'edit-2',
-            'Lazer': 'monitor',
-            'Restaurante': 'coffee',
-            'Roupas': 'shopping-bag',
-            'Manutenção': 'tool',
-            'Impostos': 'file-text',
-            'Doações': 'gift',
-            'Pet': 'github',
-            'Viagem': 'navigation',
-            'Cursos': 'book-open',
-            'Compras Online': 'shopping-cart',
-            'Serviços Domésticos': 'briefcase',
-            'Cuidados Pessoais': 'user',
-            'Emergências': 'alert-triangle',
-            'Reserva de Emergência': 'shield',
-            'Poupança': 'archive',
             'Cartão de Crédito': 'credit-card',
-            'Salário': 'dollar-sign',
-            'Freelance': 'dollar-sign',
-            'Rendimentos': 'trending-up',
+            'Compras': 'shopping-bag', // agrupamento de roupas/compras online
+            'Educação': 'book',
+            'Energia': 'zap',
+            'Internet': 'wifi',
             'Investimentos': 'bar-chart',
-            'Presentes': 'gift',
-            'Reembolsos': 'corner-down-left',
+            'Lazer': 'monitor',
+            'Receitas': 'dollar-sign', // inclui salário, freelance, reembolsos, etc.
+            'Restaurante': 'coffee',
+            'Salário': 'dollar-sign',
+            'Saúde': 'heart',
+            'Serviços': 'tool', // inclui manutenção, serviços domésticos
+            'Supermercado': 'shopping-cart',
+            'Telefone': 'phone',
+            'Transporte': 'truck',
+            'Água': 'droplet',
             'Outros': 'more-horizontal',
         };
-
         return icons[categoria] || 'dollar-sign';
     };
 
-
-    function getMonthName(date: Date): string { // Funcao para pegar o nome do mes e deixar em maisculo a primeira letra
-        return date.toLocaleString('pt-BR', { month: 'long' }).replace(/^./, c => c.toUpperCase());
+    // Formata datas para exibir nos cards
+    function getMonthName(date: Date): string {
+        return date
+            .toLocaleString('pt-BR', { month: 'long' })
+            .replace(/^./, c => c.toUpperCase());
     }
-
     function formatCustomDate(dateString: string): string {
         const date = new Date(dateString);
         const day = date.getDate();
         const month = getMonthName(date);
-
         return `${day} de ${month}`;
     }
-
-
-    function getCurrentMonthInterval(): string { // Funcao para pegar o intervalo entre meses no card Total
+    function getCurrentMonthInterval(): string {
         const now = new Date();
         const month = getMonthName(now);
         const year = now.getFullYear();
-        const lastDay = new Date(year, now.getMonth() + 1, 0).getDate(); // ultimo dia do mes
-
+        const lastDay = new Date(year, now.getMonth() + 1, 0).getDate();
         return `De 1 a ${lastDay} de ${month}`;
     }
 
+    // Busca transações
+    const fetchData = useCallback(async () => {
+        try {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
 
-    useEffect(() => {
-        async function fetchMonthlySummary() {
-            try {
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = now.getMonth() + 1;
-
-                const resumo = await getMonthlySummary(year, month);
-
-                setHighlightData({
-                    entry: resumo.entrada,
-                    exit: resumo.saida,
-                    total: resumo.total,
-                    lastEntry: resumo.ultima_entrada_data
-                        ? formatCustomDate(resumo.ultima_entrada_data)
-                        : '',
-                    lastExit: resumo.ultima_saida_data
-                        ? formatCustomDate(resumo.ultima_saida_data)
-                        : '',
-                });
-            } catch (error) {
-                console.error('Erro ao buscar resumo mensal:', error);
-            }
+            const response = await getTransactions(year, month);
+            const formatted = response.map(item => ({
+                type: item.tipo === 'entrada' ? 'up' : 'down',
+                icon: getIconByCategoria(item.categoria),
+                title: item.titulo,
+                amount: parseFloat(item.valor).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }),
+                dataTransaction: new Date(item.data).toLocaleDateString('pt-BR'),
+                typeExpense: item.categoria,
+            }));
+            setData(formatted);
+        } catch (err: any) {
+            console.error('Erro ao carregar transações:', err.message);
         }
-        fetchMonthlySummary();
-    }, [data]);
+    }, []);
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = now.getMonth() + 1; // +1 para mes correto
+    // Busca resumo mensal (entradas/saídas/total)
+    const fetchMonthlySummary = useCallback(async () => {
+        try {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
 
-                const response = await getTransactions(year, month); // passa ano e mes para api filtrar
-
-                const formatted = response.map(item => ({
-                    type: item.tipo === 'entrada' ? 'up' : 'down',
-                    icon: getIconByCategoria(item.categoria),
-                    title: item.titulo,
-                    amount: parseFloat(item.valor).toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    }),
-                    dataTransaction: new Date(item.data).toLocaleDateString('pt-BR'),
-                    typeExpense: item.categoria,
-                }));
-
-                setData(formatted);
-            } catch (err) {
-                console.error('Erro ao carregar transações:', err.message);
-            }
+            const resumo = await getMonthlySummary(year, month);
+            setHighlightData({
+                entry: resumo.entrada,
+                exit: resumo.saida,
+                total: resumo.total,
+                lastEntry: resumo.ultima_entrada_data
+                    ? formatCustomDate(resumo.ultima_entrada_data)
+                    : '',
+                lastExit: resumo.ultima_saida_data
+                    ? formatCustomDate(resumo.ultima_saida_data)
+                    : '',
+            });
+        } catch (error: any) {
+            console.error('Erro ao buscar resumo mensal:', error);
         }
+    }, []);
 
+    // 1) Na montagem inicial
+    useEffect(() => {
         fetchData();
-    }, [data]);
+        fetchMonthlySummary();
+    }, [fetchData, fetchMonthlySummary]);
+
+    // 2) Sempre que a tela ganhar foco
+    useFocusEffect(
+        useCallback(() => {
+            fetchData();
+            fetchMonthlySummary();
+        }, [fetchData, fetchMonthlySummary])
+    );
 
     return (
         <Container>
@@ -174,9 +160,9 @@ export function Dashboard() {
                         </User>
                     </UserInfo>
                     <Icon name="power" />
-
                 </UserWrapper>
             </Header>
+
             <HighlightCards>
                 <HighlightCard
                     type='up'
@@ -201,13 +187,13 @@ export function Dashboard() {
                     lastTransaction={
                         highlightData.lastExit
                             ? `Última saída dia ${highlightData.lastExit}`
-                            : `Nenhuma saída`
+                            : 'Nenhuma saída'
                     }
                 />
                 <HighlightCard
                     type='total'
                     title='Total'
-                    amount={highlightData.total.toLocaleString(`pt-BR`, {
+                    amount={highlightData.total.toLocaleString('pt-BR', {
                         style: 'currency',
                         currency: 'BRL'
                     })}
@@ -217,13 +203,11 @@ export function Dashboard() {
 
             <Transactions>
                 <Text>Listagem</Text>
-
                 <TransactionList
                     data={data}
                     renderItem={({ item }) => <Transaction data={item} />}
                 />
             </Transactions>
-
         </Container>
     );
 }
