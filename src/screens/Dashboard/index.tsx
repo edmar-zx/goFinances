@@ -41,26 +41,41 @@ export function Dashboard() {
     // Pega o ícone pelo nome da categoria
     const getIconByCategoria = (categoria: string) => {
         const icons: { [key: string]: string } = {
-            'Alimentação': 'utensils', // ícone novo sugerido
+            'Água': 'droplet',
             'Aluguel': 'home',
+            'Alimentação': 'coffee',
             'Assinaturas': 'edit-2',
             'Cartão de Crédito': 'credit-card',
-            'Compras': 'shopping-bag', // agrupamento de roupas/compras online
+            'Compras Online': 'shopping-bag',
+            'Cuidados Pessoais': 'user',
+            'Cursos': 'book-open',
+            'Doações': 'gift',
             'Educação': 'book',
+            'Emergências': 'alert-triangle',
             'Energia': 'zap',
-            'Internet': 'wifi',
+            'Farmácia': 'plus-circle',
+            'Freelance': 'briefcase',
+            'Impostos': 'file-text',
             'Investimentos': 'bar-chart',
+            'Internet': 'wifi',
             'Lazer': 'monitor',
-            'Receitas': 'dollar-sign', // inclui salário, freelance, reembolsos, etc.
+            'Manutenção': 'tool',
+            'Outros': 'more-horizontal',
+            'Pet': 'heart',
+            'Presentes': 'gift',
+            'Poupança': 'save',
+            'Reserva de Emergência': 'shield',
+            'Reembolsos': 'rotate-ccw',
+            'Rendimentos': 'trending-up',
             'Restaurante': 'coffee',
+            'Roupas': 'shopping-bag',
             'Salário': 'dollar-sign',
             'Saúde': 'heart',
-            'Serviços': 'tool', // inclui manutenção, serviços domésticos
+            'Serviços Domésticos': 'home',
             'Supermercado': 'shopping-cart',
             'Telefone': 'phone',
             'Transporte': 'truck',
-            'Água': 'droplet',
-            'Outros': 'more-horizontal',
+            'Viagem': 'map-pin',
         };
         return icons[categoria] || 'dollar-sign';
     };

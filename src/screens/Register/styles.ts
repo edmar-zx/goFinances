@@ -26,7 +26,7 @@ export const Title = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     color: ${({ theme }) => theme.colors.shape};
     font-size: ${RFValue(18)}px;
-    margin-top: ${RFValue(70)}px;;
+    margin-top: ${RFValue(50)}px;;
 `
 
 export const Form = styled.View`

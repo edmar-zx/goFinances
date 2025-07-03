@@ -41,10 +41,10 @@ export async function getMonthlySummary(year, month) {
   }
 }
 
-export async function getResume(year: number, month: number) {
+export async function getResume(year: number, month: number, type: 'positive' | 'negative') {
   try {
     const response = await api.get('/resume', {
-      params: { year, month }
+      params: { year, month, type: type === 'positive' ? 'entrada' : 'saida' }
     });
     return response.data;
   } catch (error) {

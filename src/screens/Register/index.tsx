@@ -22,12 +22,10 @@ import { TransactionTypeButton } from "../../components/Forms/TransactionTypeBut
 import { Button } from "../../components/Forms/Button";
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import { CategorySelectModal } from '../../components/Forms/CategorySelectModal';
-
 import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { AppTabRoutesParamList } from '../../@types/navigation';
 import { postTransaction } from '../../api/api';
-
 
 export function Register() {
     const [transactionType, setTransactionType] = useState('');
@@ -46,22 +44,38 @@ export function Register() {
         'Aluguel',
         'Assinaturas',
         'Cartão de Crédito',
-        'Compras',
+        'Compras Online',
+        'Cuidados Pessoais',
+        'Cursos',
+        'Doações',
         'Educação',
+        'Emergências',
         'Energia',
-        'Internet',
+        'Farmácia',
+        'Freelance',
+        'Impostos',
         'Investimentos',
+        'Internet',
         'Lazer',
-        'Receitas',
+        'Manutenção',
+        'Pet',
+        'Presentes',
+        'Poupança',
+        'Reserva de Emergência',
+        'Reembolsos',
+        'Rendimentos',
         'Restaurante',
+        'Roupas',
         'Salário',
         'Saúde',
-        'Serviços',
+        'Serviços Domésticos',
         'Supermercado',
         'Telefone',
         'Transporte',
+        'Viagem',
         'Outros'
     ];
+
     function handleSelectType(type: 'up' | 'down') {
         setTransactionType(type);
     }
@@ -78,7 +92,6 @@ export function Register() {
             setPrice('');
             return;
         }
-
         let floatValue = parseFloat(numericValue) / 100;
 
         // Se passar do limite de 99.999.999,99, avisa o usuário
@@ -94,7 +107,6 @@ export function Register() {
             style: 'currency',
             currency: 'BRL',
         });
-
         setPrice(formatted);
     }
 
@@ -123,7 +135,6 @@ export function Register() {
 
         try {
             await postTransaction(transaction);
-
             Alert.alert(
                 'Transação salva com sucesso!',
                 '',
@@ -141,8 +152,6 @@ export function Register() {
                     },
                 ]
             );
-
-
         } catch (error) {
             Alert.alert('Erro ao salvar transação');
             console.error(error);
