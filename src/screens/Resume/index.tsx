@@ -51,9 +51,9 @@ export function Resume() {
   function processChartData(chartData: ChartItem[]) {
     const total = chartData.reduce((sum, item) => sum + item.y, 0);
     const sortedData = [...chartData].sort((a, b) => b.y - a.y);
-    const topCategories = sortedData.slice(0, 7);
+    const topCategories = sortedData.slice(0, 9);
 
-    const otherCategories = sortedData.slice(7);
+    const otherCategories = sortedData.slice(9);
     const otherTotal = otherCategories.reduce((sum, item) => sum + item.y, 0);
 
     const chartDataLimited = otherTotal > 0
