@@ -40,7 +40,6 @@ export function CategorySelectModal({
                             </TouchableOpacity>
                         )}
                     />
-
                     <CancelButton onPress={onClose}>
                         <CancelText>Cancelar</CancelText>
                     </CancelButton>
@@ -49,4 +48,3 @@ export function CategorySelectModal({
         </Modal>
     );
 }
-

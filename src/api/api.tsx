@@ -1,11 +1,10 @@
+/*  --- CONEXÕES COM A API --- */
 import axios from 'axios';
 
-// Crie uma instância do Axios (boa prática)
 const api = axios.create({
   baseURL: 'http://192.168.0.105:3000/api/v1'
 });
 
-// Função para buscar as transações
 export async function getTransactions(year, month) {
   try {
     const response = await api.get('/transactions', {

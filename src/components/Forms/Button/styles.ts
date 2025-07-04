@@ -6,7 +6,6 @@ export const Container = styled.TouchableOpacity`
     padding: 16px 18px;
     border-radius: ${({ theme}) => theme.borderRadius.medium}px;
     align-items: center;
-    
 `;
 
 export const Title = styled.Text`

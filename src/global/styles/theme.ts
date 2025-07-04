@@ -1,7 +1,7 @@
 export default {
-    colors: { // Mudar cores depois para as que estao no figma
+    colors: {
         primary: '#5F2EEA',
-        secondary: '#FF872C',
+        secondary: '#F97316',
 
         success: '#4CAF50',
         successLight: '#A5D6A7',
@@ -11,7 +11,7 @@ export default {
         warning: '#F8BD00',
 
         background: '#F0F0F0',
-        error: '#B00200',
+        error: '#ff0000',
         text: '#000000',
         text_light: '#888888',
         shape: '#FFFFFF',

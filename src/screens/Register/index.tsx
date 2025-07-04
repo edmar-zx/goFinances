@@ -1,22 +1,6 @@
 import React, { useState } from "react";
-import {
-    KeyboardAvoidingView,
-    Platform,
-    TouchableWithoutFeedback,
-    Keyboard,
-    ScrollView,
-    Alert
-} from "react-native";
-
-import {
-    Buttons,
-    ButtonWrapper,
-    Container,
-    Form,
-    Header,
-    Title
-} from "./styles";
-
+import { KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ScrollView, Alert } from "react-native";
+import { Buttons, ButtonWrapper, Container, Form, Header, Title } from "./styles";
 import { Input } from "../../components/Forms/Input";
 import { TransactionTypeButton } from "../../components/Forms/TransactionTypeButton";
 import { Button } from "../../components/Forms/Button";
@@ -27,55 +11,29 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { AppTabRoutesParamList } from '../../@types/navigation';
 import { postTransaction } from '../../api/api';
 
+import Toast from 'react-native-toast-message';
+
 export function Register() {
     const [transactionType, setTransactionType] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
-
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
+    const categories = [
+        "Água", "Aluguel", "Alimentação", "Assinaturas", "Cartão de Crédito",
+        "Compras Online", "Cuidados Pessoais", "Cursos", "Doações", "Educação",
+        "Emergências", "Energia", "Farmácia", "Freelance", "Impostos",
+        "Investimentos", "Internet", "Lazer", "Manutenção", "Pet",
+        "Presentes", "Poupança", "Reserva de Emergência", "Reembolsos", "Rendimentos",
+        "Restaurante", "Roupas", "Salário", "Saúde", "Serviços Domésticos",
+        "Supermercado", "Telefone", "Transporte", "Viagem", "Outros"
+    ];
 
     type NavigationProps = BottomTabNavigationProp<AppTabRoutesParamList>;
     const navigation = useNavigation<NavigationProps>();
 
-    const categories = [
-        'Água',
-        'Alimentação',
-        'Aluguel',
-        'Assinaturas',
-        'Cartão de Crédito',
-        'Compras Online',
-        'Cuidados Pessoais',
-        'Cursos',
-        'Doações',
-        'Educação',
-        'Emergências',
-        'Energia',
-        'Farmácia',
-        'Freelance',
-        'Impostos',
-        'Investimentos',
-        'Internet',
-        'Lazer',
-        'Manutenção',
-        'Pet',
-        'Presentes',
-        'Poupança',
-        'Reserva de Emergência',
-        'Reembolsos',
-        'Rendimentos',
-        'Restaurante',
-        'Roupas',
-        'Salário',
-        'Saúde',
-        'Serviços Domésticos',
-        'Supermercado',
-        'Telefone',
-        'Transporte',
-        'Viagem',
-        'Outros'
-    ];
 
+    /* --- UTILITÁRIOS --- */
     function handleSelectType(type: 'up' | 'down') {
         setTransactionType(type);
     }
@@ -87,19 +45,17 @@ export function Register() {
 
     function handlePriceChange(value: string) {
         const numericValue = value.replace(/\D/g, '');
-
         if (numericValue.length === 0) {
             setPrice('');
             return;
         }
-        let floatValue = parseFloat(numericValue) / 100;
 
-        // Se passar do limite de 99.999.999,99, avisa o usuário
+        let floatValue = parseFloat(numericValue) / 100;
         if (floatValue > 99999999.99) {
-            Alert.alert(
-                'Valor muito alto',
-                'O valor máximo permitido é R$ 99.999.999,99'
-            );
+            Toast.show({
+                type: 'error',
+                text1: 'Ops! Esse valor é muito alto.'
+            });
             return;
         }
 
@@ -116,13 +72,19 @@ export function Register() {
 
     async function handleSubmit() {
         if (!title || !price || !transactionType || !selectedCategory) {
-            Alert.alert('Preencha todos os campos');
+            Toast.show({
+                type: 'error',
+                text1: 'Preencha todos os campos obrigatórios.',
+            });
             return;
         }
 
         const numericPrice = parsePriceToNumber(price);
         if (numericPrice <= 0) {
-            Alert.alert('O valor deve ser maior que zero');
+            Toast.show({
+                type: 'error',
+                text1: 'O valor precisa ser maior que zero.'
+            });
             return;
         }
 
@@ -135,25 +97,21 @@ export function Register() {
 
         try {
             await postTransaction(transaction);
-            Alert.alert(
-                'Transação salva com sucesso!',
-                '',
-                [
-                    {
-                        text: 'OK',
-                        onPress: () => {
-                            //Limpa os campos somente após o clique no "OK"
-                            setTitle('');
-                            setPrice('');
-                            setTransactionType('');
-                            setSelectedCategory('');
-                            navigation.navigate('Listagem');
-                        },
-                    },
-                ]
-            );
+            Toast.show({
+                type: 'success',
+                text1: 'Transação salva com sucesso!'
+            });
+            setTitle('');
+            setPrice('');
+            setTransactionType('');
+            setSelectedCategory('');
+            navigation.navigate('Listagem');
+
         } catch (error) {
-            Alert.alert('Erro ao salvar transação');
+            Toast.show({
+                type: 'error',
+                text1: 'Erro ao salvar transação!'
+            });
             console.error(error);
         }
     }

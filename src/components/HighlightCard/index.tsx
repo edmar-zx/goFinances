@@ -1,4 +1,4 @@
-import { 
+import {
     Container,
     Header,
     Title,
@@ -22,25 +22,25 @@ const icon = {
     total: 'dollar-sign',
 }
 
-export function HighlightCard({type, title, amount, lastTransaction}: Props){
-    return(
-        <Container type={ type }>
+export function HighlightCard({ type, title, amount, lastTransaction }: Props) {
+    return (
+        <Container type={type}>
             <Header>
                 <Title type={type}>
                     {title}
                 </Title>
-                <Icon 
-                    name={ icon[type] }
-                    type={ type }
+                <Icon
+                    name={icon[type]}
+                    type={type}
                 />
             </Header>
 
             <Footer>
                 <Amount type={type}>
-                    { amount }
+                    {amount}
                 </Amount>
                 <LastTransaction type={type}>
-                    { lastTransaction }
+                    {lastTransaction}
 
                 </LastTransaction>
             </Footer>

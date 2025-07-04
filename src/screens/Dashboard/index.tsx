@@ -38,7 +38,7 @@ export function Dashboard() {
         lastExit: ''
     });
 
-    // Pega o ícone pelo nome da categoria
+    /* --- ÍCONES COM BASE NO NOME DA CATEGORIA --- */
     const getIconByCategoria = (categoria: string) => {
         const icons: { [key: string]: string } = {
             'Água': 'droplet',
@@ -80,18 +80,20 @@ export function Dashboard() {
         return icons[categoria] || 'dollar-sign';
     };
 
-    // Formata datas para exibir nos cards
+    /* --- UTILITÁRIOS --- */
     function getMonthName(date: Date): string {
         return date
             .toLocaleString('pt-BR', { month: 'long' })
             .replace(/^./, c => c.toUpperCase());
     }
+
     function formatCustomDate(dateString: string): string {
         const date = new Date(dateString);
         const day = date.getDate();
         const month = getMonthName(date);
         return `${day} de ${month}`;
     }
+
     function getCurrentMonthInterval(): string {
         const now = new Date();
         const month = getMonthName(now);
@@ -100,7 +102,6 @@ export function Dashboard() {
         return `De 1 a ${lastDay} de ${month}`;
     }
 
-    // Busca transações
     const fetchData = useCallback(async () => {
         try {
             const now = new Date();
@@ -125,7 +126,6 @@ export function Dashboard() {
         }
     }, []);
 
-    // Busca resumo mensal (entradas/saídas/total)
     const fetchMonthlySummary = useCallback(async () => {
         try {
             const now = new Date();
@@ -149,13 +149,12 @@ export function Dashboard() {
         }
     }, []);
 
-    // 1) Na montagem inicial
+    /* --- ATUALIZAÇÃO DA TELA --- */
     useEffect(() => {
         fetchData();
         fetchMonthlySummary();
     }, [fetchData, fetchMonthlySummary]);
 
-    // 2) Sempre que a tela ganhar foco
     useFocusEffect(
         useCallback(() => {
             fetchData();

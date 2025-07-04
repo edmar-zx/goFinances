@@ -1,10 +1,5 @@
 import styled from "styled-components/native";
-
-import{
-    RFPercentage,
-    RFValue,
-} from 'react-native-responsive-fontsize'
-import theme from "../../global/styles/theme";
+import { RFValue, RFPercentage } from 'react-native-responsive-fontsize'
 
 export const Container = styled.View`
     flex: 1;
@@ -12,14 +7,13 @@ export const Container = styled.View`
 `
 
 export const Header = styled.View`
-    background-color: ${ ({theme}) => theme.colors.primary };
+    background-color: ${({ theme }) => theme.colors.primary};
     width: 100%;
-    height: ${ RFValue(120)}px;
+    height: ${RFValue(120)}px;
     align-items: center;
     justify-content: center;
-    padding-bottom: 20px;
+    padding-bottom: ${RFValue(20)}px;
     font-family: ${({ theme }) => theme.fonts.bold};
-   
 `
 
 export const Title = styled.Text`
@@ -30,22 +24,21 @@ export const Title = styled.Text`
 `
 
 export const Form = styled.View`
-    margin-bottom: 60px;
+    margin-bottom: ${RFPercentage(7)}px;
     width: 100%;
-    padding: 24px;
+    padding: ${({ theme }) => theme.spacing.large}px;
+    gap: ${({ theme }) => theme.spacing.medium}px;
 `
 
 export const Buttons = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 15px;
 `
+
 export const ButtonWrapper = styled.View`
   position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
+  bottom: ${({ theme }) => theme.spacing.large}px;
+  left: ${({ theme }) => theme.spacing.large}px;
+  right: ${({ theme }) => theme.spacing.large}px;
 `;
-
-

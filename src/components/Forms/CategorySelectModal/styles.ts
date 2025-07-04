@@ -1,5 +1,3 @@
-// src/components/Forms/styles.ts
-
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
@@ -14,12 +12,12 @@ export const ModalContainer = styled.View`
   width: 80%;
   background-color: ${({ theme }) => theme.colors.shape};
   border-radius: ${({ theme }) => theme.borderRadius.medium}px;
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing.medium}px;
   max-height: 60%;
 `;
 
 export const CategoryItem = styled.View`
-  padding: 15px;
+  padding: ${({ theme }) => theme.spacing.medium}px;
   border-bottom-width: 1px;
   border-bottom-color: #eee;
 `;
@@ -31,7 +29,7 @@ export const CategoryText = styled.Text`
 `;
 
 export const CancelButton = styled.TouchableOpacity`
-  margin-top: 10px;
+  margin-top: ${RFValue(10)}px;
   align-items: center;
 `;
 
@@ -40,4 +38,3 @@ export const CancelText = styled.Text`
   font-size: ${RFValue(14)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
-

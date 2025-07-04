@@ -11,11 +11,9 @@ export const Container = styled(TouchableOpacity) <ContainerProps>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
   border: 1px solid ${({ theme }) => theme.colors.text};
   border-radius: ${({ theme }) => theme.borderRadius.medium}px;
-
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing.medium}px;
   width: 45%;
 
   ${({ isActive, type }) =>

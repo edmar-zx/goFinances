@@ -1,12 +1,16 @@
-import React, { useState, useCallback, useRef } from "react";
+
+import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { MonthNavigation, MonthText, IconButton, LegendItem, ColorBox, Text, SpaceText, Graphic, Container, Header, Title, SlideContainer, PaginationContainer, Dot, PriceText } from "./styles";
 import { Feather } from '@expo/vector-icons';
 import { FlatList, TouchableWithoutFeedback } from "react-native";
 import { VictoryPie } from "victory-native";
 import { getResume } from "../../api/api";
+import {
+  MonthNavigation, MonthText, IconButton, LegendItem, ColorBox, Text, SpaceText, Graphic, Container,
+  Header, Title, SlideContainer, PaginationContainer, Dot, PriceText
+} from "./styles";
 
-// serve para remover um warning no celular da versao do victory-native
+/* Remove warning no celular da versão do victory-native */
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs([
   'Support for defaultProps will be removed from function components'
@@ -34,13 +38,14 @@ export function Resume() {
     }
   }, [currentYear, currentMonthIndex, type]);
 
-  // callback sincrono que apenas dispara o async
+  /*  --- ATUALIZA OS DADOS --- */
   useFocusEffect(
     React.useCallback(() => {
       fetchData();
     }, [fetchData])
   );
 
+  /*  --- UTILITÁRIOS --- */
   type ChartItem = { x: string; y: number };
 
   function processChartData(chartData: ChartItem[]) {
@@ -101,7 +106,7 @@ export function Resume() {
         <Header type={type}>
           <SlideContainer>
             <Title>
-              {type === "positive" ? "Resumo: Entradas" : "Resumo: Saídas"}
+              {type === "positive" ? "Entradas" : "Saídas"}
             </Title>
           </SlideContainer>
 
@@ -169,4 +174,3 @@ export function Resume() {
     </Container>
   );
 }
-

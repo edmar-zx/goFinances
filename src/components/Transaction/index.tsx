@@ -11,7 +11,6 @@ import {
 } from "./styles"
 import React from 'react';
 
-
 interface TransactionProps {
     type: 'up' | 'down'
     title: string
@@ -22,7 +21,7 @@ interface TransactionProps {
 }
 
 interface Props {
-  data: TransactionProps ;
+    data: TransactionProps;
 }
 
 export function Transaction({ data }: Props) {
