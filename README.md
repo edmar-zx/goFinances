@@ -50,7 +50,7 @@ git clone https://github.com/edmar-zx/goFinances.git
 
 2. Instale as dependências com `npm install` ou `yarn`
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 3. Execute o projeto com `npx expo start`
 ```bash
@@ -70,10 +70,52 @@ npx expo start
 git clone https://github.com/edmar-zx/goFinancesAPI.git
 ```
 
+## É necessário mudar o endereço IP do api.tsx e colocar o IP da sua máquina
+- Primeiro descubra o IPv4 da sua máquina pelo CMD se estiver no Windows pelo comando:
+```bash
+ipconfig
+```
+ ```bash
+Microsoft Windows [versão 10.0.19045.5854]
+
+
+C:\Users\Administrador>ipconfig
+
+Configuração de IP do Windows
+
+
+Adaptador Ethernet Ethernet:
+
+   Sufixo DNS específico de conexão. . . . . . :
+   Endereço IPv6 de link local . . . . . . . . : ****::****:****:****:******
+   Endereço IPv4. . . . . . . .  . . . . . . . : 00.00.000.000
+   Máscara de Sub-rede . . . . . . . . . . . . : ***.***.***.***
+   Gateway Padrão. . . . . . . . . . . . . . . : **.**.***.***
+
+C:\Users\Administrador>
+```
+### Estrutura de pastas
+- Depois vá até o arquivo api.tsx
+```bash
+src/
+├── @types/
+├── api/
+│   └── api.tsx
+├── components/
+├── global/
+├── routes/
+└── screens/
+```
+### Depois altere o IP no api.tsx no seguinte trecho:
+```bash
+const api = axios.create({
+  baseURL: 'http://00.00.000.000:3000/api/v1'
+});
+```
+
 ## Observações
 
 - Para uma melhor experiência, o app utiliza fontes customizadas e temas para manter a identidade visual consistente.
 - Toasts personalizados informam erros, avisos e confirmações de forma clara para o usuário.
 
 ---
-
