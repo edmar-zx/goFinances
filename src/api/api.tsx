@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://192.168.0.105:3000/api/v1'
+  baseURL: 'http://00.00.000.000:3000/api/v1'
 });
 
 export async function getTransactions(year, month) {
