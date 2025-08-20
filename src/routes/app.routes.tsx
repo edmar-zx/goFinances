@@ -7,10 +7,12 @@ import { Resume } from "../screens/Resume";
 import { Feather } from '@expo/vector-icons';
 import theme from "../global/styles/theme";
 
+
 const { Navigator, Screen } = createBottomTabNavigator<AppTabRoutesParamList>();
 
 export function AppRoutes() {
     return (
+        
         <Navigator id={undefined}
             screenOptions={{
                 headerShown: false,
@@ -65,5 +67,6 @@ export function AppRoutes() {
                 }}
             />
         </Navigator>
+        
     );
 }

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://00.00.000.000:3000/api/v1'
+  baseURL: 'http://192.168.0.105:3000/api/v1'
 });
 
 export async function getTransactions(year, month) {
@@ -42,7 +42,7 @@ export async function getMonthlySummary(year, month) {
 
 export async function getResume(year: number, month: number, type: 'positive' | 'negative') {
   try {
-    const response = await api.get('/resume', {
+    const response = await api.get('/resume/entriesByCategory', {
       params: { year, month, type: type === 'positive' ? 'entrada' : 'saida' }
     });
     return response.data;

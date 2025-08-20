@@ -17,6 +17,8 @@ import { AppRoutes } from './src/routes/app.routes';
 import Toast, { ToastConfig } from 'react-native-toast-message';
 import { CustomToast } from './src/components/CustomToast';
 
+import { Routes } from './src/routes';
+
 const toastConfig: ToastConfig = {
   success: (props) => <CustomToast {...props} type="success" />,
   error: (props) => <CustomToast {...props} type="error" />,
@@ -37,7 +39,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <AppRoutes />
+         <Routes />
         <Toast config={toastConfig}  />
       </NavigationContainer>
     </ThemeProvider>

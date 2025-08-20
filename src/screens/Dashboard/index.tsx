@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import React, { useEffect, useState, useCallback } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import {
     Container,
     Header,
@@ -19,6 +19,8 @@ import {
 import { HighlightCard } from '../../components/HighlightCard';
 import { Transaction } from '../../components/Transaction';
 import { getTransactions, getMonthlySummary } from '../../api/api';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../routes';
 
 interface MonthlySummary {
     entry: number;
@@ -29,6 +31,7 @@ interface MonthlySummary {
 }
 
 export function Dashboard() {
+     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const [data, setData] = useState<any[]>([]);
     const [highlightData, setHighlightData] = useState<MonthlySummary>({
         entry: 0,
@@ -173,7 +176,7 @@ export function Dashboard() {
                             <UserName>Aluno</UserName>
                         </User>
                     </UserInfo>
-                    <Icon name="power" />
+                    <Icon name="power" onPress={() => navigation.navigate('Login')}/>
                 </UserWrapper>
             </Header>
 

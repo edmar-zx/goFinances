@@ -142,9 +142,13 @@ export function Resume() {
           labelRadius={90}
           width={350}
           height={350}
+          animate={{
+            duration: 1000,
+            onLoad: { duration: 1500 }
+          }}
           style={{
             labels: { fill: "#fff", fontSize: 12, fontWeight: "bold" },
-            data: { stroke: "#000", strokeWidth: 1 }
+            data: { stroke: "#000", strokeWidth: 0.5 }
           }}
           labels={({ datum }) =>
             total > 0 ? `${Math.round((datum.y / total) * 100)}%` : ""

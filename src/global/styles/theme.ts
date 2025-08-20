@@ -17,8 +17,8 @@ export default {
         shape: '#FFFFFF',
     },
     fonts: {
-        medium: 'Poppins_500Medium',
         regular: 'Poppins_400Regular',
+        medium: 'Poppins_500Medium',
         bold: 'Poppins_700Bold',
         black: 'Poppins_900Black',
     },
